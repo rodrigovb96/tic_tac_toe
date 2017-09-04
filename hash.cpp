@@ -1,9 +1,5 @@
 Hash::Hash()
 {
-	pTurn = 1;
-
-	counter = 0;
-
 	board.resize(9,' ');
 
 	players.push_back(Player("P2",' ',true)); // init the second player as a computer ( HARD CODED by Now)
