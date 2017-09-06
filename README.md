@@ -13,7 +13,8 @@ Simple tic-tac-toe with AI made out of C++ and SFML(2.0) Library
 	--+---+--
 	Z | X | C
 
+	Num2 to Restart the game;
+
 ## BUILD:
 	- Requires C++14 
-
 	- make and enjoy
