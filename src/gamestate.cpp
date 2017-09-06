@@ -2,8 +2,7 @@
 
 GameState::GameState()
 {
-	board.resize(9,' ');
-
+	board.fill(' ');
 	players.push_back(Player("P2",' ',true)); // init the second player as a computer ( HARD CODED by Now)
 }
 

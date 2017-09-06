@@ -21,7 +21,7 @@ public:
 
 private:
 
-	Sprite sprite_board[9]; // all the marks
+	std::array<Sprite,9> sprite_board; // all the marks
 	Sprite background;
 
 	Texture bg_texture;

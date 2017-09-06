@@ -6,12 +6,12 @@ General_Handler::General_Handler()
 	window.setFramerateLimit(30);
 	
 	// loading text font	
-	if(!font.loadFromFile("font.TTF"))
+	if(!font.loadFromFile("files/font.TTF"))
 		std::cerr << "ERROR LOADING TEXT FONT!" << '\n';
 	else
 		init_txt.setFont(font);	
 
-	if(!bg_texture.loadFromFile("images/background.png"))
+	if(!bg_texture.loadFromFile("files/images/background.png"))
 		std::cerr << "ERROR LOADING BACKGROUND IMAGE!" << '\n';
 	else
 		background.setTexture(bg_texture);
@@ -28,9 +28,9 @@ General_Handler::General_Handler()
 
 
 	// Loading all the necessary textures
-	textures['x'].loadFromFile("images/x_mark.png");	
-	textures['o'].loadFromFile("images/o_mark.png");	
-	textures[' '].loadFromFile("images/clear_img.png");
+	textures['x'].loadFromFile("files/images/x_mark.png");	
+	textures['o'].loadFromFile("files/images/o_mark.png");	
+	textures[' '].loadFromFile("files/images/clear_img.png");
 
 
 	// Loading input keys	

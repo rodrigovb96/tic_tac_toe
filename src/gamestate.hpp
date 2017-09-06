@@ -31,7 +31,7 @@ private:
 	int player_turn = 1; // stores the player turn
 	int counter = 0; // counts how many plays were made
 
-	std::vector<char> board;
+	std::array<char,9> board;
 	std::vector<Player> players;	
 
 	Player winner_;	
