@@ -1,13 +1,15 @@
-int ComputerAI::operator() (Hash game)
+#include "computer_ai.hpp"
+
+int ComputerAI::operator() (GameState game)
 {	
-	move_score  = minimax(game,0);	
+	move_score  = mini_max(game,0);	
 	return move_score.first;
 } 
 
 
 
 // return all the possible moves
-std::vector<int> ComputerAI::possible_moves(Hash game)
+std::vector<int> ComputerAI::possible_moves(GameState game)
 { 
 	std::vector<int> temp; 
 	
@@ -20,24 +22,24 @@ std::vector<int> ComputerAI::possible_moves(Hash game)
 } 
 
 // evalute the ai play
-// minimax algorithm
-std::pair<int,int> ComputerAI::minimax(Hash game,int depth)
+// mini_max algorithm
+std::pair<int,int> ComputerAI::mini_max(GameState game,int depth)
 {
 	//base case 
-	if(game.verify() == Hash::Game::HAS_WINNER)
+	if(game.verify_state() == GameState::Game::HAS_WINNER)
 	{
-		if(game.winner().pMark() == game.p2_mark() ) 
+		if(game.winner().player_mark() == game.p2_mark() ) 
 			return std::make_pair(0,10 - depth);
 		else
 			return std::make_pair(0,depth -10 );	
 	
 	}
-	else if( game.verify() == Hash::Game::DRAW)
+	else if( game.verify_state() == GameState::Game::DRAW)
 		return std::make_pair(0,0); // Same as a null return
 
 	depth++;	
 	
-	// std::map<move,score>
+	// Alias -> std::map<move,score>
 	std::map<int,int> score_per_move;
 
 	std::vector<int> moves = possible_moves(game);
@@ -46,7 +48,7 @@ std::pair<int,int> ComputerAI::minimax(Hash game,int depth)
 	for(auto move : moves)
 	{ 
 		game.put_in_pos(move);
-		score_per_move[move] =  minimax(game,depth).second;
+		score_per_move[move] =  mini_max(game,depth).second;
 		game.remove_from_pos(move);
 		game.undo_turn();
 	}

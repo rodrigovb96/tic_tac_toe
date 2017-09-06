@@ -1,13 +1,14 @@
-Hash::Hash()
+#include "gamestate.hpp"
+
+GameState::GameState()
 {
 	board.resize(9,' ');
 
 	players.push_back(Player("P2",' ',true)); // init the second player as a computer ( HARD CODED by Now)
-	
 }
 
 // check if the game has a winner or it is a draw
-Hash::Game Hash::verify()
+GameState::Game GameState::verify_state()
 {
 	
 	// diagonal checks
@@ -50,30 +51,30 @@ Hash::Game Hash::verify()
 }
 
 // returns the  winner
-Player Hash::winner()
+Player GameState::winner()
 {
 	return winner_;
 }
 
 // verify if a pos is used
-bool Hash::is_pos_used(unsigned int pos)
+bool GameState::is_pos_used(unsigned int pos)
 {
 	return board[pos] != ' ';
 }
 
-// put the mark in the given pos
+// yer's input the mark in the given pos
 // and return the mark
-char Hash::put_in_pos(unsigned int pos)
+char GameState::put_in_pos(unsigned int pos)
 {
 	board[pos] = turn();
 
 	// counts( for draw checking)
 	counter++;
 	
-	if(verify() == Hash::Game::HAS_WINNER)
+	if(verify_state() == GameState::Game::HAS_WINNER)
 	{
-		winner_.setName( players[pTurn - 2].pName());
-		winner_.setMark( players[pTurn - 2].pMark());
+		winner_.set_name( players[player_turn - 2].player_name());
+		winner_.set_mark( players[player_turn - 2].player_mark());
 	}	
 
 
@@ -82,17 +83,17 @@ char Hash::put_in_pos(unsigned int pos)
 
 // clear all the values in the table
 //  and reset all the flags 
-void Hash::clear_hash() 
+void GameState::clear_hash() 
 {
 	for(char& val : board)
 		val = ' ';	
 
 	counter = 0;
-	pTurn = 1;
+	player_turn = 1;
 }
 
 // clear the given pos
-void Hash::remove_from_pos(unsigned int pos) 
+void GameState::remove_from_pos(unsigned int pos) 
 { 
 	board[pos] = ' '; 
 	counter--;
@@ -100,36 +101,36 @@ void Hash::remove_from_pos(unsigned int pos)
 }
 
 // set the second player mark given the first player mark
-void Hash::set_player_mark(const char mark)
+void GameState::set_player_mark(const char mark)
 {
 	players.insert(players.begin(), Player("P1",mark,false) );
 	
-	players[1].setMark( (mark == 'o' ? 'x' : 'o' ) ) ;		
+	players[1].set_mark( (mark == 'o' ? 'x' : 'o' ) ) ;		
 }
 
 // do the turn 
-char Hash::turn()
+char GameState::turn()
 {
-	pTurn = (pTurn%2) != 0 ? 1 : 2;		
-	return players[(pTurn++)-1].pMark();	
+	player_turn = (player_turn%2) != 0 ? 1 : 2;		
+	return players[(player_turn++)-1].player_mark();	
 }
 
-void Hash::undo_turn() { pTurn--; } 
+void GameState::undo_turn() { player_turn--; } 
 
 // check if it is the p2 turn
-bool Hash::p2_turn() { return players[pTurn-1].pMark() == players[1].pMark(); }
+bool GameState::p2_turn() const { return players[player_turn-1].player_mark() == players[1].player_mark(); }
 
 //return the p2 mark
-char Hash::p2_mark() { return players[1].pMark(); } 
+char GameState::p2_mark() const { return players[1].player_mark(); } 
 
-void Hash::debugger()
+void GameState::debugger()
 {
 		
 	std::cout << std::string(100,'\n');
 	std::cout << "++++ DEBUGGER ++++" << '\n';		
 
-	std::cout << "P1: " << players[0].pMark() << '\n';	
-	std::cout << "P2: " << players[1].pMark() << '\n' << '\n';
+	std::cout << "P1: " << players[0].player_mark() << '\n';	
+	std::cout << "P2: " << players[1].player_mark() << '\n' << '\n';
 	
 
 	std::cout << "---" << '\n';
@@ -146,19 +147,19 @@ void Hash::debugger()
 	std::cout << "State: "; 
 	
 	
-	Hash::Game state = verify();
+	GameState::Game state = verify_state();
 	
-	if( state == Hash::Game::HAS_WINNER)
+	if( state == GameState::Game::HAS_WINNER)
 	{ 
 		std::cout << "HAS_WINNER" << '\n';
 		std::cout << "Winner:\n";
-		std::cout <<" -" <<winner_.pName() << '\n';
-		std::cout <<" -"<< winner_.pMark() << '\n';
+		std::cout <<" -" <<winner_.player_name() << '\n';
+		std::cout <<" -"<< winner_.player_mark() << '\n';
 	} 
-	else if( state == Hash::Game::NO_WINNER)
+	else if( state == GameState::Game::NO_WINNER)
 		std::cout << "NO_WINNER" << '\n'; 
 	else
 		std::cout << "DRAW" << '\n';
 	std::cout << "+++===      ===+++" << '\n';
-	
+
 }

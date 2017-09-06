@@ -1,3 +1,5 @@
+#include "general_handler.hpp"
+
 General_Handler::General_Handler()
 {
 	window.create(VideoMode(600,600),"Tic-Tac-Toe AI",Style::Close);
@@ -29,6 +31,18 @@ General_Handler::General_Handler()
 	textures['x'].loadFromFile("images/x_mark.png");	
 	textures['o'].loadFromFile("images/o_mark.png");	
 	textures[' '].loadFromFile("images/clear_img.png");
+
+
+	// Loading input keys	
+	input_key[0] = Keyboard::Q;
+	input_key[1] = Keyboard::W;
+	input_key[2] = Keyboard::E;
+	input_key[3] = Keyboard::A;
+	input_key[4] = Keyboard::S;
+	input_key[5] = Keyboard::D;
+	input_key[6] = Keyboard::Z;
+	input_key[7] = Keyboard::X;
+	input_key[8] = Keyboard::C;
 
 
 	// Positions of the sprites(s) in the table 	
@@ -64,8 +78,6 @@ General_Handler::General_Handler()
 	sprite_board[8].setOrigin(-200,-200);
 	sprite_board[8].setPosition(215,210);
 
-	// flag for initial options	
-	init_flag = false;	
 
 }
 
@@ -112,53 +124,45 @@ void General_Handler::game_loop()
 			else
 			{
 				// if the game is not over(has no winner and its not a draw) 
-				if( board.verify() != Hash::Game::HAS_WINNER && board.verify() != Hash::Game::DRAW && !board.p2_turn())
+				if( board.verify_state() != GameState::Game::HAS_WINNER && board.verify_state() != GameState::Game::DRAW && !board.p2_turn())
 					input_handler(evt);
-				else if( board.verify() != Hash::Game::HAS_WINNER && board.verify() != Hash::Game::DRAW)
+				else if( board.verify_state() != GameState::Game::HAS_WINNER && board.verify_state() != GameState::Game::DRAW)
 					ai_input_handler(computer(board));
+
 				else if(evt.type == Event::KeyPressed && evt.key.code == Keyboard::Num2)
 				{// reset the game
 					board.clear_hash();
 					clear_graphics();
 
 				}
-					
+				
 
 
 			}
-	
-		}
-	
-		window.clear();		
 
-		if(!init_flag)
-		{
-			window.draw(init_txt);
-		}
-		else 
-		{
-
-			window.draw(background);
-
-			{
-				window.draw(sprite_board[0]);
-				window.draw(sprite_board[1]);
-				window.draw(sprite_board[2]);
-				window.draw(sprite_board[3]);
-				window.draw(sprite_board[4]);
-				window.draw(sprite_board[5]);
-				window.draw(sprite_board[6]);
-				window.draw(sprite_board[7]);
-				window.draw(sprite_board[8]);
-			}
-
-		
-		}
-
-
-		window.display();	
-		
 	}
+
+	window.clear();		
+
+	if(!init_flag)
+	{
+		window.draw(init_txt);
+	}
+	else 
+	{
+
+		window.draw(background);
+
+		for(auto& sprite : sprite_board)
+			window.draw(sprite); // thanks to /u/URZq
+
+	
+	}
+
+
+	window.display();	
+	
+}
 }
 
 // handles all the user inputs
@@ -166,59 +170,18 @@ void General_Handler::input_handler(Event input_evt)
 {
 	char mark_in_board = ' ';
 
-	
 	if(input_evt.type == Event::KeyPressed)
 	{
-		if(input_evt.key.code == Keyboard::Q && !board.is_pos_used(0) )
-		{
-			mark_in_board =	board.put_in_pos(0);
-			sprite_board[0].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::W && !board.is_pos_used(1) )
-		{
-			mark_in_board = board.put_in_pos(1);
-			sprite_board[1].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::E && !board.is_pos_used(2) )
-		{
-			mark_in_board = board.put_in_pos(2);
-			sprite_board[2].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::A && !board.is_pos_used(3) )
-		{
-			mark_in_board = board.put_in_pos(3);
-			sprite_board[3].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::S && !board.is_pos_used(4) )
-		{
-			mark_in_board =	board.put_in_pos(4);
-			sprite_board[4].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::D && !board.is_pos_used(5) )
-		{
-			mark_in_board = board.put_in_pos(5);	
-			sprite_board[5].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::Z && !board.is_pos_used(6) )
-		{
-			mark_in_board = board.put_in_pos(6);
-			sprite_board[6].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::X && !board.is_pos_used(7) )
-		{
-			mark_in_board = board.put_in_pos(7);
-			sprite_board[7].setTexture(textures[mark_in_board]);
-		}
-		else if(input_evt.key.code == Keyboard::C && !board.is_pos_used(8) )
-		{
-			mark_in_board = board.put_in_pos(8);
-			sprite_board[8].setTexture(textures[mark_in_board]);
+		for(int i = 0; i < input_key.size(); i++) 
+		{ 
+			if(input_evt.key.code == input_key[i] && !board.is_pos_used(i))
+			{
+				mark_in_board = board.put_in_pos(i);
+				sprite_board[i].setTexture(textures[mark_in_board]);
+
+			}
 		}
 	}
-	
-
-	
-		
 }
 
 // handle all the AI inputs

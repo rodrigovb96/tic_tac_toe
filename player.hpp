@@ -5,23 +5,22 @@
 class Player
 {
 public:
-	Player(std::string _name,char _mark,bool isComputer=false) : name{_name}, mark{_mark}, is_computer{isComputer} {}
+	Player(std::string _name,char _mark,bool computer=false) : name{_name}, mark{_mark}, is_computer_flag{computer} {}
 	Player();	
 
-	std::string pName(); 
-	char pMark(); 
-	bool isComputer(); 	
+	std::string player_name() const;
+	char player_mark() const; 
+	bool is_computer() const; 	
 	
 
-	void setName(const std::string);
-	void setMark(const char);
+	void set_name(const std::string);
+	void set_mark(const char);
 
 private:
 	std::string name;
 
 	char mark; 
 
-	bool is_computer;
+	bool is_computer_flag;
 };
 
-#include "player.cpp"

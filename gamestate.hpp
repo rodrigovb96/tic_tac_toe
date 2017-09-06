@@ -2,17 +2,17 @@
 
 #include <string> 
 #include <vector>
-#include "player.hpp"
+#include "player.cpp"
 
 
-class Hash
+class GameState 
 {
 public:
 	enum class Game { HAS_WINNER, DRAW, NO_WINNER };
 
-	Hash(); 
+	GameState(); 
 
-	Game verify();// verify the state of the game	
+	Game verify_state();// verify the state of the game	
 
 	Player winner();
 
@@ -23,12 +23,12 @@ public:
 	void set_player_mark(const char);
 	char turn(); // return the player's mark in the turn
 	void undo_turn(); 
-	bool p2_turn(); // verify if it is the p2 turn
-	char p2_mark();
+	bool p2_turn() const; // verify if it is the p2 turn
+	char p2_mark() const;
 	void debugger(); // temporary function
 
 private:
-	int pTurn = 1; // stores the player turn
+	int player_turn = 1; // stores the player turn
 	int counter = 0; // counts how many plays were made
 
 	std::vector<char> board;
@@ -37,4 +37,3 @@ private:
 	Player winner_;	
 };
 
-#include "hash.cpp"

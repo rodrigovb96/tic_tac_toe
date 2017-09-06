@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <chrono> 
-#include "computer_ai.hpp"
+#include "computer_ai.cpp"
 
 
 // for every function or object of SFML
@@ -17,7 +17,7 @@ public:
 	void input_handler(Event);
 	void ai_input_handler(int);
 	void clear_graphics();
-	void winning_animation();
+	void winning_animation(); // TODO
 
 private:
 
@@ -28,7 +28,7 @@ private:
 
 	std::map<char,Texture> textures;
 
-	std::vector<int> winning_pos;
+	std::array<Keyboard::Key,9> input_key;	
 
 	Font font;
 
@@ -36,13 +36,11 @@ private:
 
 	RenderWindow window;
 
-	Hash board;	
-
+	GameState board;	
 
 	ComputerAI computer;
 
-	bool init_flag;
+	bool init_flag = false;
 };
 
 
-#include "general_handler.cpp"

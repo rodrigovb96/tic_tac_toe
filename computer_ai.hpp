@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "hash.hpp"
+#include "gamestate.cpp"
 #include <algorithm> 
 #include <tuple>
 #include <map>
@@ -13,14 +13,13 @@ public:
 	ComputerAI() = default; 
 	
 	
-	int  operator() (Hash);
-	std::vector<int,int> score(Hash,int);	
-	std::vector<int> possible_moves(Hash);
-	std::pair<int,int> minimax(Hash,int);
+	int  operator() (GameState);
+	std::vector<int,int> score(GameState,int);	
+	std::vector<int> possible_moves(GameState);
+	std::pair<int,int> mini_max(GameState,int);
 private:
 	std::pair<int,int> move_score;
 };
 
 
 
-#include "computer_ai.cpp"
