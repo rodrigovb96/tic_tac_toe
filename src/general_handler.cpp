@@ -89,7 +89,6 @@ void General_Handler::game_loop()
 	while(window.isOpen())
 	{
 		
-		board.debugger();
 		Event evt;
 		while(window.pollEvent(evt))
 		{
@@ -131,7 +130,7 @@ void General_Handler::game_loop()
 
 				else if(evt.type == Event::KeyPressed && evt.key.code == Keyboard::Num2)
 				{// reset the game
-					board.clear_hash();
+					board.clear_board();
 					clear_graphics();
 
 				}
@@ -154,7 +153,7 @@ void General_Handler::game_loop()
 		window.draw(background);
 
 		for(auto& sprite : sprite_board)
-			window.draw(sprite); // thanks to /u/URZq
+			window.draw(sprite); 
 
 	
 	}
@@ -173,14 +172,12 @@ void General_Handler::input_handler(Event input_evt)
 	if(input_evt.type == Event::KeyPressed)
 	{
 		for(int i = 0; i < input_key.size(); i++) 
-		{ 
 			if(input_evt.key.code == input_key[i] && !board.is_pos_used(i))
 			{
 				mark_in_board = board.put_in_pos(i);
 				sprite_board[i].setTexture(textures[mark_in_board]);
 
 			}
-		}
 	}
 }
 

@@ -3,30 +3,12 @@
 
 Player::Player(){ is_computer_flag = false; }
 
-std::string Player::player_name() const
-{
-	return name;
-}
+std::string Player::player_name() const { return name; }
 
+char Player::player_mark() const { return mark; }
 
-char Player::player_mark() const
-{
-	return mark;
-}
+bool Player::is_computer() const { return is_computer_flag; }
 
-// true if the player is a computer
-bool Player::is_computer() const 
-{
-	return is_computer_flag;
-}
+void Player::set_name(const std::string str) { name = str; }
 
-
-void Player::set_name(const std::string str)
-{
-	name = str;
-}
-
-void Player::set_mark(const char mark_)
-{
-	mark = mark_;
-}
+void Player::set_mark(const char mark_) { mark = mark_; }

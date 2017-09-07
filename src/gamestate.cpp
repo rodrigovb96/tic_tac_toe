@@ -82,7 +82,7 @@ char GameState::put_in_pos(unsigned int pos)
 
 // clear all the values in the table
 //  and reset all the flags 
-void GameState::clear_hash() 
+void GameState::clear_board() 
 {
 	for(char& val : board)
 		val = ' ';	
