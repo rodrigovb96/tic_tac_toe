@@ -17,4 +17,5 @@ Simple tic-tac-toe with AI made out of C++ and SFML(2.0) Library
 
 ## BUILD:
 	- Requires C++14 
+	- Requires SFML library
 	- make and enjoy
