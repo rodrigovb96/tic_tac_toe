@@ -83,7 +83,6 @@ General_Handler::General_Handler()
 
 // while the window is open all the process is made
 // input and output 
-// 
 void General_Handler::game_loop()
 {
 	while(window.isOpen())
@@ -171,7 +170,7 @@ void General_Handler::input_handler(Event input_evt)
 
 	if(input_evt.type == Event::KeyPressed)
 	{
-		for(int i = 0; i < input_key.size(); i++) 
+		for(unsigned int i = 0; i < input_key.size(); i++) 
 			if(input_evt.key.code == input_key[i] && !board.is_pos_used(i))
 			{
 				mark_in_board = board.put_in_pos(i);
