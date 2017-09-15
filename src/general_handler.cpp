@@ -2,6 +2,7 @@
 
 General_Handler::General_Handler()
 {
+	// Window setup 
 	window.create(VideoMode(600,600),"Tic-Tac-Toe AI",Style::Close);
 	window.setFramerateLimit(30);
 	
@@ -151,8 +152,7 @@ void General_Handler::game_loop()
 
 		window.draw(background);
 
-		for(auto& sprite : sprite_board)
-			window.draw(sprite); 
+		for(auto& sprite : sprite_board)  window.draw(sprite); 
 
 	
 	}

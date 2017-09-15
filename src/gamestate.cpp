@@ -50,18 +50,12 @@ GameState::Game GameState::verify_state()
 }
 
 // returns the  winner
-Player GameState::winner()
-{
-	return winner_;
-}
+Player GameState::winner(){ return winner_; }
 
 // verify if a pos is used
-bool GameState::is_pos_used(unsigned int pos)
-{
-	return board[pos] != ' ';
-}
+bool GameState::is_pos_used(unsigned int pos){ return board[pos] != ' '; }
 
-// yer's input the mark in the given pos
+// input the mark in the given pos
 // and return the mark
 char GameState::put_in_pos(unsigned int pos)
 {
@@ -159,6 +153,7 @@ void GameState::debugger()
 		std::cout << "NO_WINNER" << '\n'; 
 	else
 		std::cout << "DRAW" << '\n';
+
 	std::cout << "+++===      ===+++" << '\n';
 
 }
