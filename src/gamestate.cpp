@@ -4,6 +4,7 @@ GameState::GameState()
 {
 	board.fill(' ');
 	players.push_back(Player("P2",' ',true)); // init the second player as a computer ( HARD CODED by Now)
+	_game_mode = GameState::Mode::PVC_GAME;
 }
 
 // check if the game has a winner or it is a draw
@@ -49,11 +50,16 @@ GameState::Game GameState::verify_state()
 	return Game::NO_WINNER;
 }
 
+bool GameState::game_over() 
+{
+	GameState::Game game_state = verify_state();
+	return game_state == GameState::Game::HAS_WINNER ||  game_state == GameState::Game::DRAW;
+}
 // returns the  winner
-Player GameState::winner(){ return winner_; }
+Player GameState::winner() const { return winner_; }
 
 // verify if a pos is used
-bool GameState::is_pos_used(unsigned int pos){ return board[pos] != ' '; }
+bool GameState::is_pos_used(unsigned int pos) const{ return board[pos] != ' '; }
 
 // input the mark in the given pos
 // and return the mark
@@ -94,11 +100,15 @@ void GameState::remove_from_pos(unsigned int pos)
 }
 
 // set the second player mark given the first player mark
-void GameState::set_player_mark(const char mark)
+void GameState::set_player2_mark(const char mark)
 {
 	players.insert(players.begin(), Player("P1",mark,false) );
 	
 	players[1].set_mark( (mark == 'o' ? 'x' : 'o' ) ) ;		
+	
+	// if player 2 is not a computer set it's computer flag to false
+	if(_game_mode == Mode::PVP_GAME)
+		players[1].set_computer_flag(false);
 }
 
 // do the turn 
@@ -115,6 +125,11 @@ bool GameState::p2_turn() const { return players[player_turn-1].player_mark() ==
 
 //return the p2 mark
 char GameState::p2_mark() const { return players[1].player_mark(); } 
+
+//set the game type to pvp
+GameState::Mode GameState::game_mode() const  { return  _game_mode; } 
+
+void GameState::set_game_mode(Mode _game_mode) { this->_game_mode = _game_mode; }
 
 void GameState::debugger()
 {

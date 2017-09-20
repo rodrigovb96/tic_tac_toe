@@ -84,7 +84,7 @@ General_Handler::General_Handler()
 
 // while the window is open all the process is made
 // input and output 
-void General_Handler::game_loop()
+void General_Handler::main_loop()
 {
 	while(window.isOpen())
 	{
@@ -98,22 +98,23 @@ void General_Handler::game_loop()
 				window.close();
 				
 
-			if(!init_flag)
+			if(init)
 			{	
-				
 				if(evt.type == Event::KeyPressed)
-				{ 
+				{	
+				       	if(evt.key.code == Keyboard::Num1)	
+						board.set_game_mode(GameState::Mode::PVP_GAME);
 
 					// choosing the player's mark
 					if(evt.key.code == Keyboard::X)
 					{ 
-						init_flag = true;
-						board.set_player_mark('x');
+						init = false;
+						board.set_player2_mark('x');
 					}
 					else if(evt.key.code == Keyboard::O)
 					{ 
-						init_flag = true;
-						board.set_player_mark('o');
+						init = false;
+						board.set_player2_mark('o');
 					}
 
 
@@ -123,16 +124,16 @@ void General_Handler::game_loop()
 			else
 			{
 				// if the game is not over(has no winner and its not a draw) 
-				if( board.verify_state() != GameState::Game::HAS_WINNER && board.verify_state() != GameState::Game::DRAW && !board.p2_turn())
+				if((!board.game_over() && !board.p2_turn() ) || (!board.game_over() &&  board.game_mode() == GameState::Mode::PVP_GAME )) 
 					input_handler(evt);
-				else if( board.verify_state() != GameState::Game::HAS_WINNER && board.verify_state() != GameState::Game::DRAW)
+				else if( !board.game_over() && board.p2_turn())
 					ai_input_handler(computer(board));
-
 				else if(evt.type == Event::KeyPressed && evt.key.code == Keyboard::Num2)
 				{// reset the game
 					board.clear_board();
 					clear_graphics();
 
+					init = true;
 				}
 				
 
@@ -143,7 +144,7 @@ void General_Handler::game_loop()
 
 	window.clear();		
 
-	if(!init_flag)
+	if(init)
 	{
 		window.draw(init_txt);
 	}
@@ -154,7 +155,6 @@ void General_Handler::game_loop()
 
 		for(auto& sprite : sprite_board)  window.draw(sprite); 
 
-	
 	}
 
 

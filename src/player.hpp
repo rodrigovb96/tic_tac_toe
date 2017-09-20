@@ -11,6 +11,7 @@ public:
 	std::string player_name() const;
 	char player_mark() const; 
 	bool is_computer() const; 	
+	void set_computer_flag(bool flag);
 	void set_name(const std::string);
 	void set_mark(const char);
 

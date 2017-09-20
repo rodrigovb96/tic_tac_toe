@@ -5,5 +5,5 @@
 int main()
 {
 	General_Handler gh;
-	gh.game_loop();
+	gh.main_loop();
 }

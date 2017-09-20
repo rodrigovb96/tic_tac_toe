@@ -4,7 +4,8 @@ Simple tic-tac-toe with AI made out of C++ and SFML(2.0) Library
 
 ## Some Game Info:
 	- Game Still in development
-	- Only Player vs PC
+	- PVP(Just Press Num1 in the init screen) mode
+	- PVC mode
 
 ## CONTROLS: 
 	Q | W | E

@@ -9,21 +9,25 @@ class GameState
 {
 public:
 	enum class Game { HAS_WINNER, DRAW, NO_WINNER };
+	enum class Mode { PVP_GAME, PVC_GAME };
 
 	GameState(); 
 
 	Game verify_state();// verify the state of the game	
+	bool game_over();// verify if the game is over
 
-	Player winner();
-	bool is_pos_used(unsigned int);// verify if a pos is used
+	Player winner() const;
+	bool is_pos_used(unsigned int) const;// verify if a pos is used
 	char put_in_pos(unsigned int);
 	void clear_board(); 
 	void remove_from_pos(unsigned int);
-	void set_player_mark(const char);
+	void set_player2_mark(const char);
 	char turn(); // return the player's mark in the turn
 	void undo_turn(); 
 	bool p2_turn() const; // verify if it is the p2 turn
 	char p2_mark() const;
+	Mode game_mode() const;
+	void set_game_mode(Mode _game_mode);
 	void debugger(); 
 
 private:
@@ -32,6 +36,8 @@ private:
 
 	std::array<char,9> board;
 	std::vector<Player> players;	
+
+	Mode _game_mode;
 
 	Player winner_;	
 };
