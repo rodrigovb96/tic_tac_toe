@@ -19,7 +19,7 @@ General_Handler::General_Handler()
 	
 	// Initial Text
 	// =====
-		init_txt.setString("\t\tTIC-TAC-TOE AI!\nChoose your mark('X'or'O'):");
+		init_txt.setString("\t\tTIC-TAC-TOE AI!!\nChoose your mark('X'or'O'):");
 		init_txt.setCharacterSize(18);
 		init_txt.setColor(Color::Red); // SFML < 2.3 (DEPRECATED)
 		//init_txt.setFillColor(Color::Red); <- SFML 2.4.2
