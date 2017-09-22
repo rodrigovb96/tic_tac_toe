@@ -134,7 +134,10 @@ void General_Handler::main_loop()
 					clear_graphics();
 
 					init = true;
+					game_over = false;
 				}
+				else
+					game_over = true;
 				
 
 
@@ -166,8 +169,6 @@ void General_Handler::main_loop()
 // handles all the user inputs
 void General_Handler::input_handler(Event input_evt)
 {
-	char mark_in_board = ' ';
-
 	if(input_evt.type == Event::KeyPressed)
 	{
 		for(unsigned int i = 0; i < input_key.size(); i++) 
@@ -183,7 +184,7 @@ void General_Handler::input_handler(Event input_evt)
 // handle all the AI inputs
 void General_Handler::ai_input_handler(int pos)
 {
-	char mark_in_board = ' ';
+	mark_in_board = ' ';
 
 	mark_in_board =	board.put_in_pos(pos);
 	sprite_board[pos].setTexture(textures[mark_in_board]);

@@ -28,6 +28,8 @@ public:
 	char p2_mark() const;
 	Mode game_mode() const;
 	void set_game_mode(Mode _game_mode);
+
+	std::vector<int> winner_pos() const;
 	void debugger(); 
 
 private:
@@ -40,5 +42,6 @@ private:
 	Mode _game_mode;
 
 	Player winner_;	
+	std::vector<int> winning_pos;
 };
 

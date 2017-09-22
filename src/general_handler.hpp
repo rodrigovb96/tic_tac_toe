@@ -17,7 +17,7 @@ public:
 	void input_handler(Event);
 	void ai_input_handler(int);
 	void clear_graphics();
-	void winning_animation(); // TODO
+	void winning_animation(std::vector<int>); // TODO
 
 private:
 
@@ -35,7 +35,10 @@ private:
 	GameState board;	
 	ComputerAI computer;
 
+	char mark_in_board = ' ';
+
 	bool init = true;
+	bool game_over = false;
 };
 
 

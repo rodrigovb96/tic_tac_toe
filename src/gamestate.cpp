@@ -3,6 +3,7 @@
 GameState::GameState()
 {
 	board.fill(' ');
+	winning_pos.resize(3);
 	players.push_back(Player("P2",' ',true)); // init the second player as a computer ( HARD CODED by Now)
 	_game_mode = GameState::Mode::PVC_GAME;
 }
@@ -14,34 +15,75 @@ GameState::Game GameState::verify_state()
 	// diagonal checks
 	{
 		if(board[0] != ' ' &&  board[0] == board[4] && board[4] == board[8])
+		{
+			winning_pos[0] = 0;
+			winning_pos[1] = 4;
+			winning_pos[2] = 8;
 			return Game::HAS_WINNER;
+		}
 
 		if( board[6] != ' ' && board[6] == board[4] && board[4] == board[2])
+		{
+			winning_pos[0] = 6;
+			winning_pos[1] = 4;
+			winning_pos[2] = 2;
+
 			return Game::HAS_WINNER;	
+		}
 	}
 
 	// horizontal checks
 	{
 		if( board[0] != ' ' && board[0] == board[1] && board[1] == board[2])	
+		{
+			winning_pos[0] = 0;
+			winning_pos[1] = 1;
+			winning_pos[2] = 2;
 			return Game::HAS_WINNER;		
+		}
 		
 		if( board[3] != ' ' && board[3] == board[4] && board[4] == board[5])	
+		{
+			winning_pos[0] = 3;
+			winning_pos[1] = 4;
+			winning_pos[2] = 5;
 			return Game::HAS_WINNER;		
+		}
 		
 		if( board[6] != ' ' && board[6] == board[7] && board[7] == board[8])	
+		{
+			winning_pos[0] = 6;
+			winning_pos[1] = 7;
+			winning_pos[2] = 8;
 			return Game::HAS_WINNER;		
+		}
 	}
 
 	// vertical checks
 	{
 		if( board[0] != ' ' && board[0] == board[3] && board[3] == board[6])	
+		{
+			winning_pos[0] = 0;
+			winning_pos[1] = 3;
+			winning_pos[2] = 6;
 			return Game::HAS_WINNER;		
+		}
 
 		if( board[1] != ' ' && board[1] == board[4] && board[4] == board[7])	
+		{
+			winning_pos[0] = 1;
+			winning_pos[1] = 4;
+			winning_pos[2] = 7;
 			return Game::HAS_WINNER;		
+		}
 
 		if( board[2] != ' ' && board[2] == board[5] && board[5] == board[8])	
+		{
+			winning_pos[0] = 2;
+			winning_pos[1] = 5;
+			winning_pos[2] = 8;
 			return Game::HAS_WINNER;		
+		}
 	}
 
 	if(counter == 9)
@@ -130,6 +172,8 @@ char GameState::p2_mark() const { return players[1].player_mark(); }
 GameState::Mode GameState::game_mode() const  { return  _game_mode; } 
 
 void GameState::set_game_mode(Mode _game_mode) { this->_game_mode = _game_mode; }
+
+std::vector<int> GameState::winner_pos() const { return winning_pos; }
 
 void GameState::debugger()
 {
