@@ -133,6 +133,8 @@ void General_Handler::main_loop()
 					board.clear_board();
 					clear_graphics();
 
+
+					board.set_game_mode(GameState::Mode::PVC_GAME);
 					init = true;
 					game_over = false;
 				}

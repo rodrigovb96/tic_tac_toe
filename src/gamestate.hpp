@@ -37,7 +37,7 @@ private:
 	int counter = 0; // counts how many plays were made
 
 	std::array<char,9> board;
-	std::vector<Player> players;	
+	std::array<Player,2> players;	
 
 	Mode _game_mode;
 

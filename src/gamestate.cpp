@@ -4,7 +4,9 @@ GameState::GameState()
 {
 	board.fill(' ');
 	winning_pos.resize(3);
-	players.push_back(Player("P2",' ',true)); // init the second player as a computer ( HARD CODED by Now)
+
+	players.at(1) = Player("P2",' ',true); // init the second player as a computer ( HARD CODED by Now)
+
 	_game_mode = GameState::Mode::PVC_GAME;
 }
 
@@ -144,8 +146,9 @@ void GameState::remove_from_pos(unsigned int pos)
 // set the second player mark given the first player mark
 void GameState::set_player2_mark(const char mark)
 {
-	players.insert(players.begin(), Player("P1",mark,false) );
 	
+	players.at(0) =  Player("P1",mark,false );
+
 	players[1].set_mark( (mark == 'o' ? 'x' : 'o' ) ) ;		
 	
 	// if player 2 is not a computer set it's computer flag to false
