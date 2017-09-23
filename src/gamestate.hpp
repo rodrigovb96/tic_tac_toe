@@ -13,6 +13,7 @@ public:
 
 	GameState(); 
 
+
 	Game verify_state();// verify the state of the game	
 	bool game_over();// verify if the game is over
 

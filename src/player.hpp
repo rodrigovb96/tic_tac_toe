@@ -5,7 +5,9 @@
 class Player
 {
 public:
-	Player(std::string _name,char _mark,bool computer=false) : name{_name}, mark{_mark}, is_computer_flag{computer} {}
+	Player(std::string _name,char _mark,bool computer=false) 
+	: name{_name}, mark{_mark}, is_computer_flag{computer} {}
+
 	Player();	
 
 	std::string player_name() const;

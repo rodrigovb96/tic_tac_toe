@@ -1,9 +1,9 @@
 #include "gamestate.hpp"
 
-GameState::GameState()
+GameState::GameState() : winning_pos{3}
 {
 	board.fill(' ');
-	winning_pos.resize(3);
+
 
 	players.at(1) = Player("P2",' ',true); // init the second player as a computer ( HARD CODED by Now)
 

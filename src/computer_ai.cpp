@@ -39,10 +39,12 @@ std::pair<int,int> ComputerAI::mini_max(GameState game,int depth)
 
 	depth++;	
 	
+
+	std::vector<int> moves{possible_moves(game)};
+
+	
 	// Alias -> std::map<move,score>
 	std::map<int,int> score_per_move;
-
-	std::vector<int> moves = possible_moves(game);
 
 	// for every possible move
 	for(auto move : moves)
@@ -61,6 +63,5 @@ std::pair<int,int> ComputerAI::mini_max(GameState game,int depth)
 	else // min
 		best_move = std::min_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
 	
-	return std::make_pair(best_move->first,best_move->second );
-	
+	return *best_move;
 }
