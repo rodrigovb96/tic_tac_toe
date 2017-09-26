@@ -158,7 +158,8 @@ void General_Handler::main_loop()
 
 		window.draw(background);
 
-		for(auto& sprite : sprite_board)  window.draw(sprite); 
+		for(auto& sprite : sprite_board)  
+			window.draw(sprite); 
 
 	}
 
@@ -199,4 +200,3 @@ void General_Handler::clear_graphics()
 	for(int i = 0; i < 9; i++)
 		sprite_board[i].setTexture(textures[' ']);
 }
-

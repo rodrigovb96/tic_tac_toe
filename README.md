@@ -4,8 +4,8 @@ Simple tic-tac-toe with AI made out of C++ and SFML(2.0) Library
 
 ## Some Game Info:
 	- Game Still in development
-	- PVP(Just Press Num1 in the init screen) mode
-	- PVC mode
+	- PVP Mode (Just Press Num1 in the init screen) 
+	- PVC mode (enabled by default)
 
 ## CONTROLS: 
 	Q | W | E
@@ -14,7 +14,7 @@ Simple tic-tac-toe with AI made out of C++ and SFML(2.0) Library
 	--+---+--
 	Z | X | C
 
-	Num2 to Restart the game;
+	- Num2 to Restart the game;
 
 ## BUILD:
 	- Requires C++14 
