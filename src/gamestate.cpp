@@ -144,7 +144,7 @@ void GameState::remove_from_pos(unsigned int pos)
 }
 
 // set the second player mark given the first player mark
-void GameState::set_player2_mark(const char mark)
+void GameState::set_player_mark(const char mark)
 {
 	
 	players.at(0) =  Player("P1",mark,false );

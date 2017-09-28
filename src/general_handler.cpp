@@ -109,12 +109,12 @@ void General_Handler::main_loop()
 					if(evt.key.code == Keyboard::X)
 					{ 
 						init = false;
-						board.set_player2_mark('x');
+						board.set_player_mark('x');
 					}
 					else if(evt.key.code == Keyboard::O)
 					{ 
 						init = false;
-						board.set_player2_mark('o');
+						board.set_player_mark('o');
 					}
 
 
