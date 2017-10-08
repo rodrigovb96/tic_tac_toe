@@ -1,4 +1,4 @@
-#include "computer_ai.hpp"
+#include "computer_ai.h"
 
 int ComputerAI::operator() (GameState game)
 {	
@@ -15,7 +15,7 @@ std::vector<int> ComputerAI::possible_moves(GameState game)
 	
 	for(int i = 0; i < 9; i++)
 		if( !game.is_pos_used(i) )
-			temp.emplace_back(i);	
+			temp.push_back(i);	
 
 
 	return temp;

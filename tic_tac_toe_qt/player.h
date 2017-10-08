@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_
+#define PLAYER_
 
 #include <string> 
 
@@ -19,7 +20,10 @@ public:
 
 private:
 	std::string name;
+
 	char mark; 
+
 	bool is_computer_flag;
 };
 
+#endif

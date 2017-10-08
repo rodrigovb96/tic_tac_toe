@@ -1,8 +1,12 @@
-#pragma once
+#ifndef GAMESTATE_
+#define GAMESTATE_
 
 #include <string> 
 #include <vector>
-#include "player.cpp"
+#include <array>
+#include <iostream>
+
+#include "player.h"
 
 
 class GameState 
@@ -22,7 +26,8 @@ public:
 	char put_in_pos(unsigned int);
 	void clear_board(); 
 	void remove_from_pos(unsigned int);
-	void set_player_mark(const char);
+    void set_player_mark(const char);
+	char turn(); // return the player's mark in the turn
 	void undo_turn(); 
 	bool p2_turn() const; // verify if it is the p2 turn
 	char p2_mark() const;
@@ -33,8 +38,6 @@ public:
 	void debugger(); 
 
 private:
-	char turn_mark(); // return the player's mark in the turn
-
 	int player_turn = 1; // stores the player turn
 	int counter = 0; // counts how many plays were made
 
@@ -47,3 +50,4 @@ private:
 	std::vector<int> winning_pos;
 };
 
+#endif

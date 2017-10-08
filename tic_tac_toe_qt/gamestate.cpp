@@ -1,4 +1,4 @@
-#include "gamestate.hpp"
+#include "gamestate.h"
 
 GameState::GameState() : winning_pos{3}
 {
@@ -109,7 +109,7 @@ bool GameState::is_pos_used(unsigned int pos) const{ return board[pos] != ' '; }
 // and return the mark
 char GameState::put_in_pos(unsigned int pos)
 {
-	board[pos] = turn_mark();
+	board[pos] = turn();
 
 	// counts( for draw checking)
 	counter++;
@@ -157,7 +157,7 @@ void GameState::set_player_mark(const char mark)
 }
 
 // do the turn 
-char GameState::turn_mark()
+char GameState::turn()
 {
 	player_turn = (player_turn%2) != 0 ? 1 : 2;		
 	return players[(player_turn++)-1].player_mark();	
