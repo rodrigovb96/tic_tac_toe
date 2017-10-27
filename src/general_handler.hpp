@@ -23,12 +23,12 @@ private:
 
 	std::array<Sprite,9> sprite_board; // all the marks
 	Sprite background;
-	Texture bg_texture;
+        Texture bg_texture;
 	std::map<char,Texture> textures;
 
 	std::array<Keyboard::Key,9> input_key;	// all the input_keys
 
-	Font font;
+        Font font;
 	Text init_txt;
 
 	RenderWindow window;
