@@ -8,7 +8,7 @@ output: main.o
 	g++ $(CPPFLAGS) ./build/main.o -o $(EXEC) $(SFML_FLAGS) -fsanitize=address
 
 main.o: ./src/main.cpp
-	g++ $(CPPFLAGS) -c ./src/main.cpp  && mv ./main.o ./build
+	g++ $(CPPFLAGS) -c ./src/main.cpp && mv main.o build/
 
 clean:
 	rm ./build/*.o ./$(EXEC) 
