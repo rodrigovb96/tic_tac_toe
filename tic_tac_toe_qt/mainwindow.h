@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QMessageBox>
 #include "general_handler.h"
 
 class MainWindow : public QMainWindow
@@ -16,8 +17,7 @@ class MainWindow : public QMainWindow
 private slots:
     void handle_button_pvp();
     void handle_button_pve();
-    void handle_button_x();
-    void handle_button_o();
+    void init_game(GameState::Mode);
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();

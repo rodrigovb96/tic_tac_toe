@@ -15,15 +15,19 @@ MainWindow::MainWindow(QWidget *parent)
     pvp_mode_bt->setText("PVP MODE");
     pve_mode_bt->setText("PVE MODE");
 
-    x_mark_bt->setText("X");
-    o_mark_bt->setText("O");
+    QHBoxLayout* window_layout = new QHBoxLayout;
 
-    set_layout(pvp_mode_bt,pve_mode_bt);
+    window_layout->addWidget(pvp_mode_bt);
+    window_layout->addWidget(pve_mode_bt);
 
+    QWidget* window = new QWidget;
+
+    window->setLayout(window_layout);
+
+    setCentralWidget(window);
     connect(pvp_mode_bt,SIGNAL(clicked(bool)),this,SLOT(handle_button_pvp()));
     connect(pve_mode_bt,SIGNAL(clicked(bool)),this,SLOT(handle_button_pve()));
-    connect(x_mark_bt,SIGNAL(clicked(bool)),this,SLOT(handle_button_x()));
-    connect(o_mark_bt,SIGNAL(clicked(bool)),this,SLOT(handle_button_o()));
+
 }
 
 
@@ -31,46 +35,39 @@ MainWindow::~MainWindow()
 {
 
 }
-void MainWindow::set_layout(QPushButton* bt1, QPushButton* bt2)
+
+void MainWindow::init_game(GameState::Mode mode)
 {
-    QHBoxLayout* window_layout = new QHBoxLayout;
+    // pop_up for chosing the mark
+    QMessageBox mark_box;
+    this->close();
 
-    window_layout->addWidget(bt1);
-    window_layout->addWidget(bt2);
+    mark_box.setWindowTitle("Escolha sua marca");
+    mark_box.setText("Qual sua Escolha?");
 
-    QWidget* window = new QWidget;
 
-    window->setLayout(window_layout);
+    QPushButton * x_button = mark_box.addButton( tr("X"),QMessageBox::ActionRole);;
+    QPushButton * o_button = mark_box.addButton( tr("O"),QMessageBox::ActionRole);;
 
-    setCentralWidget(window);
+    mark_box.exec();
 
+    General_Handler game;
+    if(mark_box.clickedButton() == x_button)
+        game.main_loop(mode,'x');
+    else if(mark_box.clickedButton() == o_button)
+        game.main_loop(mode,'o');
+
+    this->show();
 }
 
 void MainWindow::handle_button_pvp()
 {
     game_mode = GameState::Mode::PVP_GAME;
-    set_layout(x_mark_bt,o_mark_bt);
+    init_game(game_mode);
 }
 
 void MainWindow::handle_button_pve()
 {
     game_mode = GameState::Mode::PVC_GAME;
-    set_layout(x_mark_bt,o_mark_bt);
-}
-
-void MainWindow::handle_button_x()
-{
-    General_Handler game;
-    close();
-    game.main_loop(game_mode,'x');
-
-    show();
-}
-
-void MainWindow::handle_button_o()
-{
-    General_Handler game;
-    close();
-    game.main_loop(game_mode,'o');
-    show();
+    init_game(game_mode);
 }
