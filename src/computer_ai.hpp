@@ -7,6 +7,9 @@
 
 
 
+using move = int;
+using score = int;
+
 class ComputerAI
 { 
 public:
@@ -14,11 +17,10 @@ public:
 	int  operator() (GameState);
 
 private:
-	std::vector<int,int> score(GameState,int);	
 	std::vector<int> possible_moves(GameState);
-	std::pair<int,int> mini_max(GameState,int);
+	std::pair<move,score> mini_max(GameState,int);
 
-	std::pair<int,int> move_score;
+	std::pair<move,score> move_score;
 };
 
 

@@ -166,7 +166,7 @@ void General_Handler::main_loop()
 
 	window.display();	
 	
-}
+    }
 }
 
 // handles all the user inputs

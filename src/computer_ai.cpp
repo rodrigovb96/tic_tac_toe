@@ -21,9 +21,10 @@ std::vector<int> ComputerAI::possible_moves(GameState game)
 	return temp;
 } 
 
+
 // evalute the ai play
 // mini_max algorithm
-std::pair<int,int> ComputerAI::mini_max(GameState game,int depth)
+std::pair<move,score> ComputerAI::mini_max(GameState game,int depth)
 {
 	//base case 
 	if(game.verify_state() == GameState::Game::HAS_WINNER)
@@ -43,21 +44,20 @@ std::pair<int,int> ComputerAI::mini_max(GameState game,int depth)
 	std::vector<int> moves{possible_moves(game)};
 
 	
-	// Alias -> std::map<move,score>
-	std::map<int,int> score_per_move;
+	std::map<move,score> score_per_move;
 
 	// for every possible move
-	for(auto move : moves)
+	for(auto m : moves)
 	{ 
                 game.debugger();
-		game.put_in_pos(move);
-		score_per_move[move] =  mini_max(game,depth).second;
-		game.remove_from_pos(move);
+		game.put_in_pos(m);
+		score_per_move[m] =  mini_max(game,depth).second;
+		game.remove_from_pos(m);
 		game.undo_turn();
 	}
 	
 	
-	std::map<int,int>::iterator best_move;
+	std::map<move,score>::iterator best_move;
 
 	if( game.p2_turn() ) // max
 		best_move = std::max_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
