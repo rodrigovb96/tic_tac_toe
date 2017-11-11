@@ -2,14 +2,13 @@ dist: trusty
 sudo: required 
 language: cpp
 compiler: g++
-install: export CXX="g++-5"
 
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+        - ubuntu-toolchain-r-test
     packages:
-    - g++-5
+        - g++-5
 
 notifications:
  email:
