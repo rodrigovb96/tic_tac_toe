@@ -1,5 +1,5 @@
 # Simple Tic-Tac-Toe Game 
-
+[![Build Status](https://travis-ci.org/rodrigovb96/tic_tac_toe.svg?branch=master)](https://travis-ci.org/rodrigovb96/tic_tac_toe)
 
 Simple tic-tac-toe with AI made out of C++ and SFML(2.0) Library
 
