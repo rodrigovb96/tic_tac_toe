@@ -94,7 +94,7 @@ void General_Handler::main_loop()
         while(window.pollEvent(evt))
         {
 
-            //close the window if escape key is pressed
+            //close the window if escape key was pressed
             if(evt.type == Event::Closed || (evt.type == Event::KeyPressed && (evt.key.code == Keyboard::Escape)))
                 window.close();
 
@@ -124,7 +124,7 @@ void General_Handler::main_loop()
             }	
             else
             {
-                // if the game is not over(has no winner and its not a draw) 
+                // if the game is not over(has no winner and it's not a draw) 
                 if((!board.game_over() && !board.p2_turn() ) || (!board.game_over() &&  board.game_mode() == GameState::Mode::PVP_GAME )) 
                     input_handler(evt);
                 else if( !board.game_over() && board.p2_turn())
