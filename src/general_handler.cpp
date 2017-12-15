@@ -12,26 +12,14 @@ General_Handler::General_Handler()
     else
         init_txt.setFont(font);	
 
-    if(!bg_texture.loadFromFile("files/images/background.png"))
-        std::cerr << "ERROR LOADING BACKGROUND IMAGE!" << '\n';
-    else
-        background.setTexture(bg_texture);
 
-    // Initial Text
-    // =====
     init_txt.setString("\t\tTIC-TAC-TOE AI!!\nChoose your mark('X'or'O'):");
     init_txt.setCharacterSize(18);
     init_txt.setColor(Color::Red); // SFML < 2.3 (DEPRECATED)
     //init_txt.setFillColor(Color::Red); <- SFML 2.4.2
     init_txt.setOrigin(-100,-100);
     init_txt.setPosition(50,10);
-    // =====
 
-
-    // Loading all the necessary textures
-    textures['x'].loadFromFile("files/images/x_mark.png");	
-    textures['o'].loadFromFile("files/images/o_mark.png");	
-    textures[' '].loadFromFile("files/images/clear_img.png");
 
 
     // Loading input keys	
@@ -47,11 +35,11 @@ General_Handler::General_Handler()
 
 
     // Positions of the sprites(s) in the table 	
-    /*
-       s|s|s
-       s|s|s
-       s|s|s
-       */
+    /* 
+           s|s|s
+           s|s|s
+           s|s|s
+    */       
     sprite_board[0].setOrigin(10,10);
     sprite_board[0].setPosition(20,10);
 
@@ -80,6 +68,19 @@ General_Handler::General_Handler()
     sprite_board[8].setPosition(215,210);
 
 
+}
+
+void General_Handler::game_setup()
+{
+    if(!bg_texture.loadFromFile("files/images/background.png"))
+        std::cerr << "ERROR LOADING BACKGROUND IMAGE!" << '\n';
+    else
+        background.setTexture(bg_texture);
+
+    // Loading all the necessary textures
+    textures['x'].loadFromFile("files/images/x_mark.png");	
+    textures['o'].loadFromFile("files/images/o_mark.png");	
+    textures[' '].loadFromFile("files/images/clear_img.png");
 }
 
 // while the window is open all the process is made
@@ -155,6 +156,12 @@ void General_Handler::main_loop()
         }
         else 
         {
+            if(!ready)
+            {
+                ready = true;
+                game_setup();
+            }
+
 
             window.draw(background);
 

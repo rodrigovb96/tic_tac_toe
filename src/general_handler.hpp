@@ -13,6 +13,7 @@ class General_Handler
 {
     public:
         General_Handler();
+        void game_setup();
         void main_loop();
         void input_handler(Event);
         void ai_input_handler(int);
@@ -38,6 +39,7 @@ class General_Handler
         char mark_in_board = ' ';
 
         bool init = true;
+        bool ready = false;
         bool game_over = false;
 };
 
