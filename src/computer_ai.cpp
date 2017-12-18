@@ -49,7 +49,7 @@ std::pair<move,score> ComputerAI::mini_max(GameState game,int depth)
     // for every possible move
     for(auto m : moves)
     { 
-//        game.debugger();
+        game.debugger();
         game.put_in_pos(m);
         score_per_move[m] =  mini_max(game,depth).second;
         game.remove_from_pos(m);
