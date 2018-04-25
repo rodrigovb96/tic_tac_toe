@@ -1,7 +1,7 @@
-dist: bionic 
+dist: trusty 
 sudo: required 
 language: cpp
-compiler: g++
+compiler: g++-7
 
 addons:
   apt:
@@ -15,7 +15,9 @@ notifications:
   on_success: never
   on_failure: always
 
-before_install: sudo apt-get update -qq
+before_install: 
+    - sudo apt update -qq
+    - sudo apt do-release-upgrade
 
 before_script:
     - sudo apt-get install libsfml-dev
