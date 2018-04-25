@@ -1,7 +1,7 @@
 dist: trusty 
 sudo: required 
 language: cpp
-compiler: g++
+compiler: g++-7
 
 addons:
   apt:
