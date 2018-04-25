@@ -36,7 +36,7 @@ class GameState
         char turn_mark(); // return the player's mark in the turn
 
         int player_turn = 1; // stores the player turn
-        int counter = 0; // counts how many plays were made
+        int pieces_in_board = 0; // counts how many plays were made
 
         std::array<char,9> board;
         std::array<Player,2> players;	

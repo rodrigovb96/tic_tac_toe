@@ -2,8 +2,8 @@
 
 int ComputerAI::operator() (GameState game)
 {	
-    move_score  = mini_max(game,0);	
-    return move_score.first;
+    auto [next_move, ai_score ] = mini_max(game,0);	
+    return next_move;
 } 
 
 
@@ -24,7 +24,7 @@ std::vector<int> ComputerAI::possible_moves(GameState game)
 
 // evalute the ai play
 // mini_max algorithm
-std::pair<move,score> ComputerAI::mini_max(GameState game,int depth)
+std::tuple<move,score> ComputerAI::mini_max(GameState game,int depth)
 {
     //base case 
     if(game.verify_state() == GameState::Game::HAS_WINNER)
@@ -51,7 +51,7 @@ std::pair<move,score> ComputerAI::mini_max(GameState game,int depth)
     { 
         game.debugger();
         game.put_in_pos(m);
-        score_per_move[m] =  mini_max(game,depth).second;
+        score_per_move[m] =  std::get<1>(mini_max(game,depth));
         game.remove_from_pos(m);
         game.undo_turn();
     }

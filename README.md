@@ -18,6 +18,6 @@ Simple tic-tac-toe game with AI made out of C++ with SFML(2.0) Library
 	- Num2 to restart the game;
 
 ## BUILD:
-	- Requires C++14 
+	- Requires C++17
 	- Requires SFML library
 	- Make and enjoy

@@ -88,7 +88,7 @@ GameState::Game GameState::verify_state()
         }
     }
 
-    if(counter == 9)
+    if(pieces_in_board == 9)
         return Game::DRAW;
 
     return Game::NO_WINNER;
@@ -112,7 +112,8 @@ char GameState::put_in_pos(unsigned int pos)
     board[pos] = turn_mark();
 
     // counts( for draw checking)
-    counter++;
+    pieces_in_board++;
+
 
     if(verify_state() == GameState::Game::HAS_WINNER)
     {
@@ -131,7 +132,7 @@ void GameState::clear_board()
     for(char& val : board)
         val = ' ';	
 
-    counter = 0;
+    pieces_in_board = 0;
     player_turn = 1;
 }
 
@@ -139,7 +140,7 @@ void GameState::clear_board()
 void GameState::remove_from_pos(unsigned int pos) 
 { 
     board[pos] = ' '; 
-    counter--;
+    pieces_in_board--;
 
 }
 
