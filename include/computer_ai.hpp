@@ -18,7 +18,7 @@ class ComputerAI
 
     private:
         std::vector<int> possible_moves(GameState);
-        std::tuple<move,score> mini_max(GameState,int);
+        std::tuple<move,score> min_max(GameState,int);
 };
 
 
