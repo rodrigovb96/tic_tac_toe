@@ -182,7 +182,7 @@ std::vector<int> GameState::winner_pos() const { return winning_pos; }
 void GameState::debugger()
 {
 
-    std::cout << std::string(100,'\n');
+    std::cout << std::string(2,'\n');
     std::cout << "++++ DEBUGGER ++++" << '\n';		
 
     std::cout << "P1: " << players[0].player_mark() << '\n';	
