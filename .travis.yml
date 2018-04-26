@@ -18,7 +18,8 @@ notifications:
 before_install: sudo apt update -qq
 
 before_script:
-    - sudo apt-get install libsfml-dev
+    - wget https://www.sfml-dev.org/files/SFML-2.4.2-linux-gcc-64-bit.tar.gz
+    - sudo tar zxvf SFML-2.4.2-linux-gcc-64-bit.tar.gz -C /usr/local
     - sudo apt-get install cmake 
 script:
     - mkdir build && cd build
