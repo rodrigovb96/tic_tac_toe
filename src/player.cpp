@@ -1,4 +1,3 @@
-
 #include "player.hpp"
 
 Player::Player(){ is_computer_flag = false; }

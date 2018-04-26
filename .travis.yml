@@ -20,4 +20,5 @@ before_install: sudo apt update -qq
 before_script:
     - sudo apt-get install libsfml-dev
 script:
-    - make
+    - mkdir build && cd build
+    - cmake ..

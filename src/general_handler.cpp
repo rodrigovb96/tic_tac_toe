@@ -7,7 +7,7 @@ General_Handler::General_Handler()
     window.setFramerateLimit(30);
 
     // loading text font	
-    if(!font.loadFromFile("files/font.TTF"))
+	if (!font.loadFromFile("../extras/fonts/font.TTF"))
         std::cerr << "ERROR LOADING TEXT FONT!" << '\n';
     else
         init_txt.setFont(font);	
@@ -16,10 +16,11 @@ General_Handler::General_Handler()
     init_txt.setString("\t\tTIC-TAC-TOE AI!!\nChoose your mark('X'or'O'):");
     init_txt.setCharacterSize(18);
 
-	init_txt.setColor(Color::Red);
 
-#ifdef NEW_VERSION 
     init_txt.setFillColor(Color::Red);
+
+#ifdef OLD_SFML
+	init_txt.setColor(Color::Red);
 #endif 
 
     init_txt.setOrigin(-100,-100);
@@ -77,15 +78,15 @@ General_Handler::General_Handler()
 
 void General_Handler::game_setup()
 {
-    if(!bg_texture.loadFromFile("files/images/background.png"))
+    if(!bg_texture.loadFromFile("../extras/images/background.png"))
         std::cerr << "ERROR LOADING BACKGROUND IMAGE!" << '\n';
     else
         background.setTexture(bg_texture);
 
     // Loading all the necessary textures
-    textures['x'].loadFromFile("files/images/x_mark.png");	
-    textures['o'].loadFromFile("files/images/o_mark.png");	
-    textures[' '].loadFromFile("files/images/clear_img.png");
+    textures['x'].loadFromFile("../extras/images/x_mark.png");	
+    textures['o'].loadFromFile("../extras/images/o_mark.png");	
+    textures[' '].loadFromFile("../extras/images/clear_img.png");
 }
 
 // while the window is open all the process is made
