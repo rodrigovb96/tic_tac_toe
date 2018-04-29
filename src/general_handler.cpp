@@ -17,11 +17,9 @@ General_Handler::General_Handler()
     init_txt.setCharacterSize(18);
 
 
-    init_txt.setFillColor(Color::Red);
 
-#ifdef OLD_SFML
-	init_txt.setColor(Color::Red);
-#endif 
+    
+    init_txt.setFillColor(Color::Red);
 
     init_txt.setOrigin(-100,-100);
     init_txt.setPosition(50,10);
@@ -135,7 +133,10 @@ void General_Handler::main_loop()
                     input_handler(evt);
                 else if( !board.game_over() && board.p2_turn())
                     ai_input_handler(computer(board));
-                else if(evt.type == Event::KeyPressed && evt.key.code == Keyboard::Num2)
+			   	else
+					game_over = true;
+
+                if(evt.type == Event::KeyPressed && evt.key.code == Keyboard::Num2)
                 {// reset the game
                     board.clear_board();
                     clear_graphics();
@@ -145,10 +146,7 @@ void General_Handler::main_loop()
                     init = true;
                     game_over = false;
                 }
-                else
-                    game_over = true;
-
-
+ 
 
             }
 

@@ -3,7 +3,9 @@
 int ComputerAI::operator() (GameState game)
 {	
     auto [ next_move, ai_score ] = min_max(game,0);	
+
     return next_move;
+
 } 
 
 
@@ -63,6 +65,7 @@ std::tuple<move,score> ComputerAI::min_max(GameState game,int depth)
         best_move = std::max_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
     else // min
         best_move = std::min_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
+
 
     return *best_move;
 }

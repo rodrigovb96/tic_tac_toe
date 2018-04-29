@@ -6,12 +6,12 @@
 #include <map>
 
 
-
 using move = int;
 using score = int;
 
 class ComputerAI
 { 
+
     public:
         ComputerAI() = default; 
         int  operator() (GameState);
