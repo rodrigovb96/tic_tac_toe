@@ -20,8 +20,10 @@ before_install:
     - sudo apt upgrade
 
 before_script:
-    - sudo apt install libsfml-dev
     - sudo apt-get install cmake 
+    - git clone https://github.com/SFML/SFML.git
+    - cd SFML/ && mkdir build && cd build
+    - cmake .. && make -j$(nproc) && make install
 script:
     - mkdir build && cd build
     - cmake ..
