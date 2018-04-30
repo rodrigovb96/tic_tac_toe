@@ -17,7 +17,6 @@ notifications:
 
 before_install: 
     - sudo apt update -qq
-    - sudo apt upgrade
 
 before_script:
     - sudo apt-get install cmake 
