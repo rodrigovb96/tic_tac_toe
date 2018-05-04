@@ -19,7 +19,11 @@ General_Handler::General_Handler()
 
 
     
+#if SFML_VERSION_MINOR == 4 
     init_txt.setFillColor(Color::Red);
+#else
+    init_txt.setColor(Color::Red);
+#endif
 
     init_txt.setOrigin(-100,-100);
     init_txt.setPosition(50,10);
