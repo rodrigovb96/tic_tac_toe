@@ -140,6 +140,7 @@ void General_Handler::main_loop()
 			   	else
 					game_over = true;
 
+
                 if(evt.type == Event::KeyPressed && evt.key.code == Keyboard::Num2)
                 {// reset the game
                     board.clear_board();

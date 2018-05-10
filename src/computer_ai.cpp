@@ -51,8 +51,8 @@ std::tuple<move,score> ComputerAI::min_max(GameState game,int depth)
     // for every possible move
     for(auto m : moves)
     { 
-        game.debugger();
         game.put_in_pos(m);
+        game.debugger();
         score_per_move[m] =  std::get<1>( min_max(game,depth));
         game.remove_from_pos(m);
         game.undo_turn();
