@@ -4,7 +4,6 @@ GameState::GameState() : winning_pos{3}
 {
     board.fill(' ');
 
-
     players.at(1) = Player("P2",' ',true); // init the second player as a computer ( HARD CODED by Now)
 
     _game_mode = GameState::Mode::PVC_GAME;
@@ -178,6 +177,8 @@ GameState::Mode GameState::game_mode() const  { return  _game_mode; }
 void GameState::set_game_mode(Mode _game_mode) { this->_game_mode = _game_mode; }
 
 std::vector<int> GameState::winner_pos() const { return winning_pos; }
+
+int GameState::num_of_pieces() const { return pieces_in_board; }
 
 void GameState::debugger()
 {

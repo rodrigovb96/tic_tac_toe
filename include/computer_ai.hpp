@@ -2,6 +2,8 @@
 
 #include "gamestate.cpp"
 #include <algorithm> 
+#include <iterator>
+#include <random>
 #include <tuple>
 #include <map>
 

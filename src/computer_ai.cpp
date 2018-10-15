@@ -59,13 +59,25 @@ std::tuple<move,score> ComputerAI::min_max(GameState game,int depth)
     }
 
 
-    std::map<move,score>::iterator best_move;
+    std::map<move,score>::iterator best_move = score_per_move.begin();
 
-    if( game.p2_turn() ) // max
-        best_move = std::max_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
-    else // min
-        best_move = std::min_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
+    
+    if( game.num_of_pieces() == 1 )
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0,score_per_move.size());
 
+        std::advance( best_move, dis(gen) );
+    }
+    else
+    {
+        if( game.p2_turn() ) // max
+            best_move = std::max_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
+        else // min
+            best_move = std::min_element(score_per_move.begin(),score_per_move.end(), [] (auto a /* c++14 */, auto b) { return a.second < b.second; });
+
+    }
 
     return *best_move;
 }

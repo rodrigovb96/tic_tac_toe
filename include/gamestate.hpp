@@ -29,6 +29,9 @@ class GameState
         Mode game_mode() const;
         void set_game_mode(Mode _game_mode);
 
+        int num_of_pieces() const;
+
+
         std::vector<int> winner_pos() const;
         void debugger(); 
 
